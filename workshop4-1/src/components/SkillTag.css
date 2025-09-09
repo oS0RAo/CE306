@@ -1,0 +1,32 @@
+.skill-tag {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.skill-tag.beginner {
+  background-color: #b4ffd8;
+  color: #065f46;
+}
+
+.skill-tag.intermediate {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.skill-tag.advanced {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.skill-tag-name {
+  text-transform: capitalize;
+}
+
+.skill-tag-level {
+  font-weight: 400;
+  font-style: italic;
+  margin-left: 4px;
+}
