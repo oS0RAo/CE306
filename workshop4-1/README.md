@@ -1,69 +1,16 @@
-# React + TypeScript + Vite
+SkillTag
+จะมีการกำหนดประเภทข้อมูลชื่อ SkillLevel ซึ่งจะมีค่าแค่ Beginner Intermediate Advanced
+interface SkillTagProps เอาไว้กำหนดคุณสมบัติที่ component จะรับเข้ามาโดย skill: { name: string; level?: SkillLevel; }; จะรับ object skill ซึ่งต้องมี name เป็น string และมี level เป็น
+ชนิด SkillLevel ที่กำหนดเอาไว้
+ในส่วนของ getLevelClass จะมีการใช้ Switch Case ในการเช็คเงื่อนไขสำหรับการแสดงผล SkillLevel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+UserProfileCard
+export interface User จะเป็นโครงสร้างข้อมูลของผู้ใช้ที่จะถูกรับเข้ามาคือ id name email avatarUrl isOnline skills
+export const UserProfileCard จะเป็นcomponentหลักในส่วนนี้ ซึ่งจะรับข้อมูล user และfunction onViewDetails เข้ามาเป็น Props แสดงผลรูปโปรไฟล์โดยใช้แท็ก <img> โดยดึงรูปมาจาก user.avatarUrl
+การแสดงสถานะออนไลน์จะใช้ user.isOnline && <span className="status-dot"></span> ถ้าเกิดว่า user.isOnline เป็น true ก็จะแสดงจุดสถานะสีเขียวขึ้นมา
+การแสดงชื่อจะใช้ user.name และอีเมล user.email การแสดงskillจะใช้ .map() เพื่อวนลูปในarray user.skills และแสดงผลแต่ละskillด้วย Component SkillTag
+และปุ่ม View Details เมื่อกดปุ่มนี้ จะเรียกใช้ฟังก์ชัน onViewDetails 
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+App
+ในส่วนนี้จะมีข้อมูล users 4 คน ใน่ส่วน users.map((user) => จะมีการใช้ฟังก์ชัน .map() เพื่อวนลูปในarray users โดยในแต่ละรอบของลูปจะเรียกใช้ Component UserProfileCard และส่งข้อมูลของแต่ละผู้ใช้
+เข้าไปเป็น props และในส่วนของ onViewDetails={handleViewDetails} จะทำการส่งฟังก์ชัน handleViewDetails ไปให้แต่ละการ์ด เมื่อกดปุ่ม View Details บนการ์ดใดก็ตามโดยฟังก์ชันนี้ก็จะแสดงข้อความและแสดง ID ของผู้ใช้คนนั้นออกมา
