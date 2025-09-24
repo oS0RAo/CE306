@@ -1,69 +1,12 @@
-# React + TypeScript + Vite
+Component Navbar
+การจัดการสถานะในการทำงานโดยใช้ useState Hook ของ React เพื่อสร้างตัวแปรสถานะชื่อ isOpen ซึ่งมีค่าเริ่มต้นเป็น false ตัวแปรนี้จะใช้เพื่อ บอกสถานะว่าเมนู Hamburger กำลังเปิดอยู่หรือไม่
+ฟังก์ชัน setIsOpen ใช้สำหรับเปลี่ยนค่าของ isOpen เมื่อผู้ใช้คลิกปุ่ม
+การตกแต่งด้วย Tailwind กำหนดให้ Navbar อยู่ที่ด้านบนสุดของหน้าจอเสมอ
+md:flex space-x-8 สำหรับเมนูหลักจซ่อนเมนูเมื่ออยู่บนหน้าจอขนาดเล็กแต่จะแสดงผลแบบแนวนอนเมื่อหน้าจอมีขนาดตั้งแต่ md ขึ้นไป
+md:hidden จะซ่อนปุ่มเมนู Hamburger เมื่ออยู่บนหน้าจอขนาดใหญ่ และจะแสดงปุ่มนี้เมื่ออยู่บนหน้าจอขนาดเล็ก
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hamburger
+onClick={() => setIsOpen(!isOpen)} เมื่อปุ่มถูกคลิกจะเรียกฟังก์ชัน setIsOpen เพื่อเปลี่ยนสถานะ isOpen ให้เป็นค่าตรงกันข้าม
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+App
+จะหน้าเว็บหลักที่นำ Component Navbar มาใช้งาน
